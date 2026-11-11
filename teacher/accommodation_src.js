@@ -27,7 +27,7 @@
   'use strict';
 
   const TOOL_ID = 'qacc-tool';
-  const VERSION = '0.4.1';
+  const VERSION = '0.4.2';
   const HOME = 'https://techconsigliere.github.io/CanvAccommodation/teacher/install-accommodation.html';
   const CONCURRENCY = 3;        // reads in flight at once while loading
   const RATE_FLOOR = 150;       // pause briefly when X-Rate-Limit-Remaining drops below this
@@ -712,40 +712,44 @@
   /* ---------------- Panel ---------------- */
 
   const CSS = `
-#${TOOL_ID}{position:fixed;inset:4vh 4vw;z-index:100000;background:#fff;color:#2d3b45;
- border:1px solid #c7cdd1;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.3);
- display:flex;flex-direction:column;font:14px/1.45 Lato,"Helvetica Neue",Arial,sans-serif}
+@font-face{font-family:"Fira Sans";font-weight:400;font-display:swap;src:url("/CanvAccommodation/fonts/FiraSans-Regular.woff") format("woff")}
+@font-face{font-family:"Fira Sans";font-weight:500;font-display:swap;src:url("/CanvAccommodation/fonts/FiraSans-Medium.woff") format("woff")}
+@font-face{font-family:"Fira Sans";font-weight:600;font-display:swap;src:url("/CanvAccommodation/fonts/FiraSans-SemiBold.woff") format("woff")}
+@font-face{font-family:"Fira Sans";font-weight:700;font-display:swap;src:url("/CanvAccommodation/fonts/FiraSans-Bold.woff") format("woff")}
+#${TOOL_ID}{position:fixed;inset:4vh 4vw;z-index:100000;background:#fff;color:#1C2023;
+ border:1px solid #D8E0E6;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.3);
+ display:flex;flex-direction:column;font:14px/1.45 "Fira Sans","Helvetica Neue",Arial,sans-serif}
 #${TOOL_ID} header{display:flex;align-items:center;justify-content:space-between;gap:12px;
- padding:12px 18px;border-bottom:1px solid #c7cdd1}
+ padding:12px 18px;border-bottom:1px solid #D8E0E6}
 #${TOOL_ID} h2{margin:0;font-size:18px}
 #${TOOL_ID} h3{margin:16px 0 6px;font-size:16px}
 #${TOOL_ID} .panel-body{overflow:auto;padding:14px 18px;flex:1}
-#${TOOL_ID} .notice{background:#eef6fb;border-left:4px solid #0374b5;padding:8px 12px;margin:0 0 12px}
+#${TOOL_ID} .notice{background:#E8F2FA;border-left:4px solid #003F87;padding:8px 12px;margin:0 0 12px}
 #${TOOL_ID} .scroll{overflow-x:auto}
 #${TOOL_ID} table{border-collapse:collapse;width:100%;margin:8px 0 16px}
-#${TOOL_ID} caption{text-align:left;color:#56606a;padding-bottom:6px}
-#${TOOL_ID} th,#${TOOL_ID} td{border:1px solid #e1e4e6;padding:6px 8px;text-align:left;vertical-align:top}
-#${TOOL_ID} thead th{background:#f5f5f5}
+#${TOOL_ID} caption{text-align:left;color:#55656F;padding-bottom:6px}
+#${TOOL_ID} th,#${TOOL_ID} td{border:1px solid #D8E0E6;padding:6px 8px;text-align:left;vertical-align:top}
+#${TOOL_ID} thead th{background:#F4F9FD}
 #${TOOL_ID} .tag{display:inline-block;font-size:12px;font-weight:normal;padding:0 6px;
  margin:3px 4px 0 0;border-radius:3px;background:#eef0f1}
 #${TOOL_ID} .tag.invited{background:#fdf6ec;color:#8a5300}
-#${TOOL_ID} .write,#${TOOL_ID} .done{color:#0b6b2e;font-weight:bold}
-#${TOOL_ID} .ok,#${TOOL_ID} .muted{color:#56606a}
+#${TOOL_ID} .write,#${TOOL_ID} .done{color:#006B3F;font-weight:bold}
+#${TOOL_ID} .ok,#${TOOL_ID} .muted{color:#55656F}
 #${TOOL_ID} .kept,#${TOOL_ID} .skip{color:#8a5300}
-#${TOOL_ID} .warn,#${TOOL_ID} .fail{color:#b3261e;font-weight:bold}
-#${TOOL_ID} .result{margin-top:4px;padding-top:4px;border-top:1px dashed #c7cdd1}
+#${TOOL_ID} .warn,#${TOOL_ID} .fail{color:#CC2D30;font-weight:bold}
+#${TOOL_ID} .result{margin-top:4px;padding-top:4px;border-top:1px dashed #D8E0E6}
 #${TOOL_ID} .datefix{margin-top:4px}
 #${TOOL_ID} .datefix select,#${TOOL_ID} .bulk select{max-width:100%}
 #${TOOL_ID} .bulk{background:#fdf6ec;border-left:4px solid #8a5300;padding:8px 12px;margin:8px 0}
-#${TOOL_ID} button{font:inherit;padding:6px 14px;border-radius:4px;border:1px solid #0374b5;
- background:#0374b5;color:#fff;cursor:pointer}
-#${TOOL_ID} button.secondary{background:#fff;color:#0374b5}
+#${TOOL_ID} button{font:inherit;padding:6px 14px;border-radius:4px;border:1px solid #003F87;
+ background:#003F87;color:#fff;cursor:pointer}
+#${TOOL_ID} button.secondary{background:#fff;color:#003F87}
 #${TOOL_ID} button:disabled{opacity:.5;cursor:not-allowed}
-#${TOOL_ID} :focus-visible{outline:2px solid #0374b5;outline-offset:2px}
-#${TOOL_ID} .credit{padding:8px 18px;border-top:1px solid #c7cdd1;font-size:12px;color:#56606a}
-#${TOOL_ID} .credit a{color:#0374b5}
+#${TOOL_ID} :focus-visible{outline:2px solid #003F87;outline-offset:2px}
+#${TOOL_ID} .credit{padding:8px 18px;border-top:1px solid #D8E0E6;font-size:12px;color:#55656F}
+#${TOOL_ID} .credit a{color:#003F87}
 #${TOOL_ID} input[type=search]{font:inherit;padding:5px 8px;width:min(320px,100%);
- border:1px solid #c7cdd1;border-radius:4px}
+ border:1px solid #D8E0E6;border-radius:4px}
 `;
 
   const status = el('p', { role: 'status', class: 'muted' }, 'Starting…');
