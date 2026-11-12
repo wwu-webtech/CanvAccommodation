@@ -5,7 +5,7 @@ time across every Classic Quiz in a course at once, doing the time-and-a-half
 arithmetic per quiz, previewing before it writes, and never lowering an existing
 accommodation.
 
-**Install:** https://techconsigliere.github.io/CanvAccommodation/teacher/install-accommodation.html
+**Install:** https://techconsigliere.github.io/CanvAccommodation/
 
 Runs inside your own Canvas session, with your own permissions. No token, nothing
 to install beyond the one bookmark. Readable source in `teacher/accommodation_src.js`.

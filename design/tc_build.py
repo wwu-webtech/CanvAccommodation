@@ -38,8 +38,6 @@ CSS = ROOT / "design" / "tc.css"
 # Edit per repository. Paths are relative to the repository root.
 PAGES = [
     "index.html",
-    "teacher/index.html",
-    "teacher/install-accommodation.html",
 ]
 
 STYLE_RE = re.compile(r"<!-- TC:STYLE -->.*?<!-- /TC:STYLE -->", re.S)
